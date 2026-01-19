@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vamsee Interiors | Premium Interior Design Studio | Hyderabad</title>
+    <meta name="description" content="Vamsee Interiors delivers premium turnkey interior solutions in Hyderabad. Designer-led execution with transparent pricing for residential, commercial, and modular kitchen projects.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #F8F7F4;
+            --secondary: #1C1C1C;
+            --accent: #6B7D5A;
+            --gold: #C9A24D;
+        }
+        
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary);
+            color: var(--secondary);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+        
+        .gradient-olive {
+            background: linear-gradient(135deg, rgba(107, 125, 90, 0.08) 0%, rgba(248, 247, 244, 0.1) 100%);
+        }
+        
+        .gradient-gold {
+            background: linear-gradient(135deg, rgba(201, 162, 77, 0.05) 0%, rgba(248, 247, 244, 0.05) 100%);
+        }
+        
+        .hover-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .hover-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(28, 28, 28, 0.08);
+        }
+        
+        .text-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .text-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .image-zoom {
+            overflow: hidden;
+        }
+        
+        .image-zoom img {
+            transition: transform 0.7s ease-out;
+        }
+        
+        .image-zoom:hover img {
+            transform: scale(1.05);
+        }
+        
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(28, 28, 28, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .popup-content {
+            background-color: var(--primary);
+            border-radius: 12px;
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .popup-overlay.active .popup-content {
+            transform: scale(1);
+        }
+        
+        .timeline-step {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline-step:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: var(--accent);
+        }
+        
+        .timeline-step:after {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--accent);
+        }
+        
+        .count-up {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .count-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .nav-hidden {
+            transform: translateY(-100%);
+        }
+        
+        .nav-visible {
+            transform: translateY(0);
+        }
+        
+        /* Mobile sticky buttons */
+        .mobile-sticky-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 998;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-sticky-buttons {
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+        
+        /* Filter buttons */
+        .filter-btn.active {
+            background-color: var(--accent);
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-primary transition-all duration-300 nav-visible" style="background-color: var(--primary);">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <!-- Added Logo -->
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3 image-zoom">
+                        <img src="logo.jpeg" alt="Vamsee Interiors Logo" class="w-full h-full object-cover">
+                    </div>
+                    <a href="#home" class="text-2xl font-bold" style="color: var(--secondary); font-family: 'Cormorant Garamond', serif;">Vamsee Interiors</a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="font-medium hover:opacity-70 transition">Home</a>
+                    <a href="#about" class="font-medium hover:opacity-70 transition">About</a>
+                    <a href="#services" class="font-medium hover:opacity-70 transition">Services</a>
+                    <a href="#portfolio" class="font-medium hover:opacity-70 transition">Portfolio</a>
+                    <a href="#process" class="font-medium hover:opacity-70 transition">Process</a>
+                    <a href="#contact" class="font-medium hover:opacity-70 transition">Contact</a>
+                    <button onclick="openWhatsApp()" class="px-6 py-2 rounded-full font-medium transition-all duration-300 hover:opacity-90" style="background-color: var(--accent); color: var(--primary);">
+                        Book Consultation
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuButton" class="md:hidden focus:outline-none">
+                    <i class="fas fa-bars text-2xl" style="color: var(--secondary);"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden absolute top-full left-0 w-full bg-primary shadow-lg hidden" style="background-color: var(--primary);">
+            <div class="flex flex-col p-6 space-y-4">
+                <a href="#home" class="font-medium py-2 hover:opacity-70 transition">Home</a>
+                <a href="#about" class="font-medium py-2 hover:opacity-70 transition">About</a>
+                <a href="#services" class="font-medium py-2 hover:opacity-70 transition">Services</a>
+                <a href="#portfolio" class="font-medium py-2 hover:opacity-70 transition">Portfolio</a>
+                <a href="#process" class="font-medium py-2 hover:opacity-70 transition">Process</a>
+                <a href="#contact" class="font-medium py-2 hover:opacity-70 transition">Contact</a>
+                <button onclick="openWhatsApp()" class="mt-4 px-6 py-3 rounded-full font-medium transition-all duration-300 hover:opacity-90" style="background-color: var(--accent); color: var(--primary);">
+                    Book Consultation
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Sticky Buttons -->
+    <div class="mobile-sticky-buttons md:hidden">
+        <a href="tel:+917036397008" class="w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition hover:opacity-90" style="background-color: var(--accent); color: var(--primary);">
+            <i class="fas fa-phone text-xl"></i>
+        </a>
+        <button onclick="openWhatsApp()" class="w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition hover:opacity-90" style="background-color: #25D366; color: white;">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 md:pt-32 pb-20 md:pb-32 px-6 relative overflow-hidden">
+        <div class="container mx-auto">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 fade-up">
+                    <div class="mb-8">
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-reveal" style="color: var(--secondary); line-height: 1.1;">
+                            Transforming Spaces, <br><span style="color: var(--accent);">Enriching Lives</span>
+                        </h1>
+                        <p class="text-lg md:text-xl mb-8 opacity-80 text-reveal" style="transition-delay: 0.2s;">
+                            Premium interior design & turnkey solutions in Hyderabad. Designer-led execution with transparent pricing for residential, commercial, and modular kitchen projects.
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 text-reveal" style="transition-delay: 0.4s;">
+                        <button onclick="openWhatsApp()" class="px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 hover:opacity-90 flex items-center justify-center gap-2" style="background-color: var(--accent); color: var(--primary);">
+                            <span>Book Free Consultation</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <a href="#portfolio" class="px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 hover:opacity-90 flex items-center justify-center gap-2 border" style="border-color: var(--secondary); color: var(--secondary);">
+                            <span>View Projects</span>
+                            <i class="fas fa-images"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 flex justify-center fade-up" style="transition-delay: 0.6s;">
+                    <div class="relative">
+                        <!-- Added interior photos -->
+                        <div class="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden image-zoom gradient-olive">
+                            <img src="ii.jpg" alt="Luxury Living Room Interior" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 w-32 h-32 rounded-lg overflow-hidden image-zoom">
+                            <img src="i7.jpeg" alt="Modern Kitchen Design" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Do Section -->
+    <section class="py-20 px-6 gradient-olive">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: var(--secondary);">What We Do</h2>
+                <p class="text-lg opacity-80 max-w-2xl mx-auto">Comprehensive interior design solutions tailored to your vision and lifestyle</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="rounded-2xl p-8 hover-card fade-up" style="background-color: var(--primary);">
+                    <div class="w-14 h-14 rounded-full flex items-center justify-center mb-6 gradient-gold">
+                        <i class="fas fa-home text-2xl" style="color: var(--accent);"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4" style="color: var(--secondary);">Residential Interiors</h3>
+                    <p class="opacity-80 mb-6">Complete home interior solutions including living rooms, bedrooms, dining areas, and more with personalized design approaches.</p>
+                    <a href="#services" class="font-medium flex items-center gap-2" style="color: var(--accent);">
+                        <span>Learn more</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="rounded-2xl p-8 hover-card fade-up" style="background-color: var(--primary); transition-delay: 0.1s;">
+                    <div class="w-14 h-14 rounded-full flex items-center justify-center mb-6 gradient-gold">
+                        <i class="fas fa-utensils text-2xl" style="color: var(--accent);"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4" style="color: var(--secondary);">Modular Kitchens</h3>
+                    <p class="opacity-80 mb-6">Custom-designed modular kitchens with premium finishes, smart storage solutions, and efficient workflow planning.</p>
+                    <a href="#services" class="font-medium flex items-center gap-2" style="color: var(--accent);">
+                        <span>Learn more</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="rounded-2xl p-8 hover-card fade-up" style="background-color: var(--primary); transition-delay: 0.2s;">
+                    <div class="w-14 h-14 rounded-full flex items-center justify-center mb-6 gradient-gold">
+                        <i class="fas fa-building text-2xl" style="color: var(--accent);"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4" style="color: var(--secondary);">Commercial Interiors</h3>
+                    <p class="opacity-80 mb-6">Office spaces, retail stores, and showrooms designed to enhance productivity, brand image, and customer experience.</p>
+                    <a href="#services" class="font-medium flex items-center gap-2" style="color: var(--accent);">
+                        <span>Learn more</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="about" class="py-20 px-6">
+        <div class="container mx-auto">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6" style="color: var(--secondary);">Why Choose Vamsee Interiors</h2>
+                    <p class="text-lg opacity-80 mb-8">With over a decade of experience in Hyderabad's premium interior design market, we bring designer-led execution, premium materials, and transparent pricing to every project.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center mr-4" style="background-color: var(--accent); color: var(--primary);">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2" style="color: var(--secondary);">Designer-Led Execution</h4>
+                                <p class="opacity-80">Our in-house design team oversees every detail from concept to completion.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center mr-4" style="background-color: var(--accent); color: var(--primary);">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2" style="color: var(--secondary);">Premium Materials</h4>
+                                <p class="opacity-80">We source only the finest materials, ensuring durability and aesthetic appeal.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center mr-4" style="background-color: var(--accent); color: var(--primary);">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2" style="color: var(--secondary);">Transparent Pricing</h4>
+                                <p class="opacity-80">No hidden costs. We provide detailed quotations with clear breakdowns.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 lg:pl-16 fade-up" style="transition-delay: 0.3s;">
+                    <div class="grid grid-cols-2 gap-6">
+                        <!-- Counter 1 -->
+                        <div class="rounded-2xl p-8 text-center gradient-olive">
+                            <div class="text-5xl font-bold mb-2 count-up" style="color: var(--accent);" data-count="250">0</div>
+                            <p class="text-lg font-medium" style="color: var(--secondary);">Projects Completed</p>
+                        </div>
+                        
+                        <!-- Counter 2 -->
+                        <div class="rounded-2xl p-8 text-center gradient-olive">
+                            <div class="text-5xl font-bold mb-2 count-up" style="color: var(--accent);" data-count="12">0</div>
+                            <p class="text-lg font-medium" style="color: var(--secondary);">Years of Experience</p>
+                        </div>
+                        
+                        <!-- Counter 3 -->
+                        <div class="rounded-2xl p-8 text-center gradient-olive">
+                            <div class="text-5xl font-bold mb-2 count-up" style="color: var(--accent);" data-count="98">0</div>
+                            <p class="text-lg font-medium" style="color: var(--secondary);">Client Satisfaction %</p>
+                        </div>
+                        
+                        <!-- Counter 4 -->
+                        <div class="rounded-2xl p-8 text-center gradient-olive">
+                            <div class="text-5xl font-bold mb-2 count-up" style="color: var(--accent);" data-count="45">0</div>
+                            <p class="text-lg font-medium" style="color: var(--secondary);">Design Awards</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section id="portfolio" class="py-20 px-6 gradient-olive">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: var(--secondary);">Our Projects</h2>
+                <p class="text-lg opacity-80 max-w-2xl mx-auto">Showcase of our premium residential and commercial interior projects</p>
+            </div>
+            
+            <!-- Removed filter buttons as requested -->
+            
+            <!-- Project Grid with all 10 photos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project 1 -->
+                <div class="project-item fade-up image-zoom rounded-2xl overflow-hidden">
+                    <div class="w-full h-64 rounded-2xl overflow-hidden">
+                        <img src="p1.jpeg" alt="Project 1" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-item fade-up image-zoom rounded-2xl overflow-hidden">
+                    <div class="w-full h-64 rounded-2xl overflow-hidden">
+                        <img src="p2.jpeg" alt="Project 2" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-item fade-up image-zoom rounded-2xl overflow-hidden">
+                    <div class="w-full h-64 rounded-2xl overflow-hidden">
+                        <img src="p3.jpeg" alt="Project 3" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-item fade-up image-zoom rounded-2xl overflow-hidden">
+                    <div class="w-full h-64 rounded-2xl overflow-hidden">
+                        <img src="p4.jpeg" alt="Project 4" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="project-item fade-up image-zoom rounded-2xl overflow-hidden">
+                    <div class="w-full h-64 rounded-2xl overflow-hidden">
+                        <img src="p5.jpeg" alt="Project 5" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="project-item fade-up image-zoom rounded-2xl overflow-hidden">
+                    <div class="w-full h-64 rounded-2xl overflow-hidden">
+                        <img src="p6.jpeg" alt="Project 6" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <!-- Project 7 -->
+                <div class="project-item fade-up image-zoom rounded-2xl overflow-hidden">
+                    <div class="w-full h-64 rounded-2xl overflow-hidden">
+                        <img src="p7.jpeg" alt="Project 7" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <!-- Project 8 -->
+                <div class="project-item fade-up image-zoom rounded-2xl overflow-hidden">
+                    <div class="w-full h-64 rounded-2xl overflow-hidden">
+                        <img src="p8.jpeg" alt="Project 8" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <!-- Project 9 -->
+                <div class="project-item fade-up image-zoom rounded-2xl overflow-hidden">
+                    <div class="w-full h-64 rounded-2xl overflow-hidden">
+                        <img src="p9.jpeg" alt="Project 9" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <!-- Project 10 -->
+                <div class="project-item fade-up image-zoom rounded-2xl overflow-hidden">
+                    <div class="w-full h-64 rounded-2xl overflow-hidden">
+                        <img src="p10.jpeg" alt="Project 10" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 fade-up">
+                <button onclick="openWhatsApp('I want to see more projects')" class="px-8 py-3 rounded-full font-medium text-lg transition-all duration-300 hover:opacity-90 inline-flex items-center gap-2 border" style="border-color: var(--accent); color: var(--accent);">
+                    <span>View More Projects on WhatsApp</span>
+                    <i class="fab fa-whatsapp"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-6">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: var(--secondary);">Our Services</h2>
+                <p class="text-lg opacity-80 max-w-2xl mx-auto">Comprehensive interior design services tailored to your unique needs and vision</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="rounded-2xl p-8 hover-card fade-up gradient-olive">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto" style="background-color: var(--primary);">
+                        <i class="fas fa-home text-3xl" style="color: var(--accent);"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center" style="color: var(--secondary);">Residential Interior Design</h3>
+                    <p class="opacity-80 mb-6 text-center">Complete home interior solutions with personalized design approaches for apartments, villas, and independent houses.</p>
+                    <div class="text-center">
+                        <button onclick="openWhatsApp('Residential Interior Design enquiry')" class="px-6 py-2 rounded-full font-medium transition-all duration-300 hover:opacity-90" style="background-color: var(--accent); color: var(--primary);">
+                            Enquire Now
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="rounded-2xl p-8 hover-card fade-up gradient-olive" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto" style="background-color: var(--primary);">
+                        <i class="fas fa-utensils text-3xl" style="color: var(--accent);"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center" style="color: var(--secondary);">Modular Kitchen</h3>
+                    <p class="opacity-80 mb-6 text-center">Custom-designed modular kitchens with premium finishes, smart storage solutions, and efficient workflow planning.</p>
+                    <div class="text-center">
+                        <button onclick="openWhatsApp('Modular Kitchen enquiry')" class="px-6 py-2 rounded-full font-medium transition-all duration-300 hover:opacity-90" style="background-color: var(--accent); color: var(--primary);">
+                            Enquire Now
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="rounded-2xl p-8 hover-card fade-up gradient-olive" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto" style="background-color: var(--primary);">
+                        <i class="fas fa-building text-3xl" style="color: var(--accent);"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center" style="color: var(--secondary);">Commercial Interiors</h3>
+                    <p class="opacity-80 mb-6 text-center">Office spaces, retail stores, and showrooms designed to enhance productivity, brand image, and customer experience.</p>
+                    <div class="text-center">
+                        <button onclick="openWhatsApp('Commercial Interiors enquiry')" class="px-6 py-2 rounded-full font-medium transition-all duration-300 hover:opacity-90" style="background-color: var(--accent); color: var(--primary);">
+                            Enquire Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-20 px-6 gradient-olive">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: var(--secondary);">Our Process</h2>
+                <p class="text-lg opacity-80 max-w-2xl mx-auto">A streamlined approach to delivering exceptional interior design projects</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Step 1 -->
+                <div class="flex flex-col md:flex-row items-center mb-12 fade-up">
+                    <div class="md:w-1/3 mb-6 md:mb-0 text-center md:text-right md:pr-12">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-2xl font-bold" style="background-color: var(--accent); color: var(--primary);">1</div>
+                        <h3 class="text-2xl font-bold mt-4" style="color: var(--secondary);">Consultation</h3>
+                    </div>
+                    <div class="md:w-2/3 timeline-step">
+                        <p class="opacity-80">We begin with an in-depth consultation to understand your vision, requirements, budget, and timeline. This includes site visits and preliminary discussions.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="flex flex-col md:flex-row items-center mb-12 fade-up" style="transition-delay: 0.1s;">
+                    <div class="md:w-1/3 mb-6 md:mb-0 text-center md:text-right md:pr-12">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-2xl font-bold" style="background-color: var(--accent); color: var(--primary);">2</div>
+                        <h3 class="text-2xl font-bold mt-4" style="color: var(--secondary);">Design</h3>
+                    </div>
+                    <div class="md:w-2/3 timeline-step">
+                        <p class="opacity-80">Our design team creates detailed 3D visualizations, material selections, and comprehensive plans that bring your vision to life before execution begins.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="flex flex-col md:flex-row items-center mb-12 fade-up" style="transition-delay: 0.2s;">
+                    <div class="md:w-1/3 mb-6 md:mb-0 text-center md:text-right md:pr-12">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-2xl font-bold" style="background-color: var(--accent); color: var(--primary);">3</div>
+                        <h3 class="text-2xl font-bold mt-4" style="color: var(--secondary);">Approval</h3>
+                    </div>
+                    <div class="md:w-2/3 timeline-step">
+                        <p class="opacity-80">We present the design concepts, 3D visualizations, and detailed quotations for your review and approval before moving to execution.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="flex flex-col md:flex-row items-center mb-12 fade-up" style="transition-delay: 0.3s;">
+                    <div class="md:w-1/3 mb-6 md:mb-0 text-center md:text-right md:pr-12">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-2xl font-bold" style="background-color: var(--accent); color: var(--primary);">4</div>
+                        <h3 class="text-2xl font-bold mt-4" style="color: var(--secondary);">Execution</h3>
+                    </div>
+                    <div class="md:w-2/3 timeline-step">
+                        <p class="opacity-80">Our skilled craftsmen and project managers execute the design with precision, maintaining quality standards and adhering to the agreed timeline.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="flex flex-col md:flex-row items-center fade-up" style="transition-delay: 0.4s;">
+                    <div class="md:w-1/3 mb-6 md:mb-0 text-center md:text-right md:pr-12">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-2xl font-bold" style="background-color: var(--accent); color: var(--primary);">5</div>
+                        <h3 class="text-2xl font-bold mt-4" style="color: var(--secondary);">Handover</h3>
+                    </div>
+                    <div class="md:w-2/3 timeline-step">
+                        <p class="opacity-80">We conduct a final walkthrough, address any concerns, and provide complete documentation before handing over your beautifully transformed space.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 px-6">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: var(--secondary);">Client Testimonials</h2>
+                <p class="text-lg opacity-80 max-w-2xl mx-auto">What our clients say about working with Vamsee Interiors</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="rounded-2xl p-8 hover-card fade-up gradient-olive">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4" style="background-color: var(--accent);"></div>
+                        <div>
+                            <h4 class="font-bold" style="color: var(--secondary);">Rajesh Kumar</h4>
+                            <p class="text-sm opacity-70">Villa Project, Jubilee Hills</p>
+                        </div>
+                    </div>
+                    <p class="opacity-80 italic">"Vamsee Interiors transformed our villa beyond expectations. Their attention to detail and quality of materials is exceptional. The project was completed on time and within budget."</p>
+                    <div class="mt-4 flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="rounded-2xl p-8 hover-card fade-up gradient-olive" style="transition-delay: 0.1s;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4" style="background-color: var(--accent);"></div>
+                        <div>
+                            <h4 class="font-bold" style="color: var(--secondary);">Priya Sharma</h4>
+                            <p class="text-sm opacity-70">Modular Kitchen, Gachibowli</p>
+                        </div>
+                    </div>
+                    <p class="opacity-80 italic">"The modular kitchen designed by Vamsee Interiors is both beautiful and functional. Every inch of space is optimized. Their team was professional and responsive throughout."</p>
+                    <div class="mt-4 flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="rounded-2xl p-8 hover-card fade-up gradient-olive" style="transition-delay: 0.2s;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4" style="background-color: var(--accent);"></div>
+                        <div>
+                            <h4 class="font-bold" style="color: var(--secondary);">Sanjay Reddy</h4>
+                            <p class="text-sm opacity-70">Office Interior, HITEC City</p>
+                        </div>
+                    </div>
+                    <p class="opacity-80 italic">"Our new office space has received countless compliments. Vamsee Interiors understood our brand identity and created a space that boosts productivity and impresses clients."</p>
+                    <div class="mt-4 flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: var(--secondary);">Get In Touch</h2>
+                <p class="text-lg opacity-80 max-w-2xl mx-auto">Ready to transform your space? Contact us for a free consultation</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <!-- Contact Form -->
+                <div class="lg:w-1/2 fade-up">
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label for="name" class="block mb-2 font-medium" style="color: var(--secondary);">Full Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-opacity-50" style="border-color: var(--accent); focus:ring-color: var(--accent); background-color: var(--primary);">
+                        </div>
+                        
+                        <div>
+                            <label for="phone" class="block mb-2 font-medium" style="color: var(--secondary);">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-opacity-50" style="border-color: var(--accent); focus:ring-color: var(--accent); background-color: var(--primary);">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block mb-2 font-medium" style="color: var(--secondary);">Email Address</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-opacity-50" style="border-color: var(--accent); focus:ring-color: var(--accent); background-color: var(--primary);">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block mb-2 font-medium" style="color: var(--secondary);">Project Details</label>
+                            <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-opacity-50" style="border-color: var(--accent); focus:ring-color: var(--accent); background-color: var(--primary);"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 hover:opacity-90" style="background-color: var(--accent); color: var(--primary);">
+                            Submit Enquiry
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="lg:w-1/2 fade-up" style="transition-delay: 0.2s;">
+                    <div class="rounded-2xl p-8 gradient-olive h-full">
+                        <h3 class="text-2xl font-bold mb-8" style="color: var(--secondary);">Contact Information</h3>
+                        
+                        <div class="space-y-6 mb-8">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center mr-4" style="background-color: var(--accent); color: var(--primary);">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1" style="color: var(--secondary);">Office Address</h4>
+                                    <p class="opacity-80">Tellapur, Hyderabad, Telangana</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center mr-4" style="background-color: var(--accent); color: var(--primary);">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1" style="color: var(--secondary);">Phone Number</h4>
+                                    <p class="opacity-80">+91 70363 97008</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center mr-4" style="background-color: var(--accent); color: var(--primary);">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1" style="color: var(--secondary);">WhatsApp Number</h4>
+                                    <p class="opacity-80">+91 70363 97008</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center mr-4" style="background-color: var(--accent); color: var(--primary);">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1" style="color: var(--secondary);">Email Address</h4>
+                                    <p class="opacity-80">Vamseeinterio@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center mr-4" style="background-color: var(--accent); color: var(--primary);">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1" style="color: var(--secondary);">Working Hours</h4>
+                                    <p class="opacity-80">Monday - Saturday: 9:00 AM - 7:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold mb-4" style="color: var(--secondary);">Connect With Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80 transition" style="background-color: var(--secondary); color: var(--primary);">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80 transition" style="background-color: var(--secondary); color: var(--primary);">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80 transition" style="background-color: var(--secondary); color: var(--primary);">
+                                    <i class="fab fa-pinterest-p"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-80 transition" style="background-color: var(--secondary); color: var(--primary);">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-20 px-6 gradient-olive">
+        <div class="container mx-auto text-center">
+            <div class="max-w-3xl mx-auto fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6" style="color: var(--secondary);">Ready to Begin Your Interior Design Journey?</h2>
+                <p class="text-xl opacity-80 mb-10">Let's create a space that reflects your style, enhances your lifestyle, and stands the test of time.</p>
+                <button onclick="openWhatsApp('General enquiry from website CTA')" class="px-10 py-4 rounded-full font-medium text-lg transition-all duration-300 hover:opacity-90 inline-flex items-center gap-3" style="background-color: var(--accent); color: var(--primary);">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                    <span>Start Conversation on WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6" style="background-color: var(--secondary); color: var(--primary);">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <!-- Logo in footer -->
+                    <div class="flex items-center mb-3">
+                        <div class="w-8 h-8 rounded-full overflow-hidden mr-2">
+                            <img src="logo.jpeg" alt="Vamsee Interiors Logo" class="w-full h-full object-cover">
+                        </div>
+                        <a href="#home" class="text-2xl font-bold" style="color: var(--primary); font-family: 'Cormorant Garamond', serif;">Vamsee Interiors</a>
+                    </div>
+                    <p class="mt-2 opacity-80">Tellapur, Hyderabad | +91 70363 97008</p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="#home" class="opacity-80 hover:opacity-100 transition">Home</a>
+                    <a href="#about" class="opacity-80 hover:opacity-100 transition">About</a>
+                    <a href="#services" class="opacity-80 hover:opacity-100 transition">Services</a>
+                    <a href="#portfolio" class="opacity-80 hover:opacity-100 transition">Portfolio</a>
+                    <a href="#process" class="opacity-80 hover:opacity-100 transition">Process</a>
+                    <a href="#contact" class="opacity-80 hover:opacity-100 transition">Contact</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-opacity-20 mt-8 pt-8 text-center opacity-70" style="border-color: var(--primary);">
+                <p>&copy; 2023 Vamsee Interiors. All rights reserved. | <a href="#" class="underline">Privacy Policy</a> | <a href="#" class="underline">Terms & Conditions</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Popup Modal -->
+    <div id="popupOverlay" class="popup-overlay">
+        <div class="popup-content p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold" style="color: var(--secondary);">Free Consultation</h3>
+                <button id="closePopup" class="text-2xl opacity-70 hover:opacity-100">&times;</button>
+            </div>
+            
+            <p class="mb-6 opacity-80">Book a free consultation with our design experts. We'll get back to you within 24 hours.</p>
+            
+            <form id="popupForm" class="space-y-4">
+                <input type="text" id="popupName" placeholder="Full Name" required class="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-opacity-50" style="border-color: var(--accent); focus:ring-color: var(--accent); background-color: var(--primary);">
+                
+                <input type="tel" id="popupPhone" placeholder="Phone Number" required class="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-opacity-50" style="border-color: var(--accent); focus:ring-color: var(--accent); background-color: var(--primary);">
+                
+                <input type="email" id="popupEmail" placeholder="Email Address" required class="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-opacity-50" style="border-color: var(--accent); focus:ring-color: var(--accent); background-color: var(--primary);">
+                
+                <textarea id="popupMessage" placeholder="Project Details" rows="3" class="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-opacity-50" style="border-color: var(--accent); focus:ring-color: var(--accent); background-color: var(--primary);"></textarea>
+                
+                <button type="submit" class="w-full px-8 py-3 rounded-full font-medium transition-all duration-300 hover:opacity-90" style="background-color: var(--accent); color: var(--primary);">
+                    Submit & Chat on WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closePopup = document.getElementById('closePopup');
+        const popupOverlay = document.getElementById('popupOverlay');
+        const contactForm = document.getElementById('contactForm');
+        const popupForm = document.getElementById('popupForm');
+        
+        // Toggle Mobile Menu
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Open WhatsApp with pre-filled message
+        function openWhatsApp(service = 'General enquiry') {
+            const phoneNumber = "917036397008"; // Updated to your number
+            const message = `Hello Vamsee Interiors, I'm interested in ${service}. Please contact me for a consultation.`;
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+        
+        // Form submission to WhatsApp
+        function submitToWhatsApp(formData, isPopup = false) {
+            const phoneNumber = "917036397008"; // Updated to your number
+            const { name, phone, email, message } = formData;
+            
+            const whatsappMessage = 
+                `*New Enquiry from Vamsee Interiors Website*\n\n` +
+                `*Name:* ${name}\n` +
+                `*Phone:* ${phone}\n` +
+                `*Email:* ${email}\n` +
+                `*Message:* ${message || 'No additional details provided'}\n\n` +
+                `_This enquiry was submitted via the website ${isPopup ? 'popup form' : 'contact form'}_`;
+            
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(url, '_blank');
+            
+            // Reset form
+            if (isPopup) {
+                popupForm.reset();
+                popupOverlay.classList.remove('active');
+            } else {
+                contactForm.reset();
+            }
+            
+            // Show confirmation (optional)
+            alert('Thank you! You will now be redirected to WhatsApp to send your enquiry.');
+        }
+        
+        // Contact Form Submission
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+            
+            submitToWhatsApp(formData, false);
+        });
+        
+        // Popup Form Submission
+        popupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('popupName').value,
+                phone: document.getElementById('popupPhone').value,
+                email: document.getElementById('popupEmail').value,
+                message: document.getElementById('popupMessage').value
+            };
+            
+            submitToWhatsApp(formData, true);
+        });
+        
+        // Show popup after 10 seconds
+        setTimeout(() => {
+            popupOverlay.classList.add('active');
+        }, 10000);
+        
+        // Close popup
+        closePopup.addEventListener('click', () => {
+            popupOverlay.classList.remove('active');
+        });
+        
+        // Close popup when clicking outside
+        popupOverlay.addEventListener('click', (e) => {
+            if (e.target === popupOverlay) {
+                popupOverlay.classList.remove('active');
+            }
+        });
+        
+        // Scroll Animations
+        function checkScroll() {
+            const elements = document.querySelectorAll('.fade-up, .text-reveal, .count-up');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                    
+                    // Animate counters
+                    if (element.classList.contains('count-up')) {
+                        const countElement = element;
+                        const target = parseInt(countElement.getAttribute('data-count'));
+                        let current = 0;
+                        const increment = target / 100;
+                        
+                        const updateCount = () => {
+                            if (current < target) {
+                                current += increment;
+                                countElement.textContent = Math.floor(current);
+                                setTimeout(updateCount, 20);
+                            } else {
+                                countElement.textContent = target;
+                            }
+                        };
+                        
+                        updateCount();
+                    }
+                }
+            });
+            
+            // Navbar hide/show on scroll
+            const nav = document.querySelector('nav');
+            let lastScrollTop = 0;
+            const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (currentScrollTop > lastScrollTop && currentScrollTop > 100) {
+                nav.classList.remove('nav-visible');
+                nav.classList.add('nav-hidden');
+            } else {
+                nav.classList.remove('nav-hidden');
+                nav.classList.add('nav-visible');
+            }
+            
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+        }
+        
+        // Initialize animations on load
+        window.addEventListener('load', () => {
+            checkScroll();
+            
+            // Animate hero text
+            const textReveals = document.querySelectorAll('.text-reveal');
+            textReveals.forEach((element, index) => {
+                setTimeout(() => {
+                    element.classList.add('active');
+                }, index * 300);
+            });
+        });
+        
+        // Check scroll position
+        window.addEventListener('scroll', checkScroll);
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
